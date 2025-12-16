@@ -9,7 +9,7 @@ Orion Library Custom is an enhanced UI library for Roblox featuring advanced ele
 ## Booting the Library
 
 ```lua
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/your-repo/OrionLib.lua')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/firemax-xx/Orion-Lib/refs/heads/main/Code.lua')))()
 ```
 
 ---
