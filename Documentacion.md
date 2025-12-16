@@ -631,7 +631,7 @@ local PlayerDrop = Tab:AddDropdown({
 ## Example Script
 
 ```lua
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/your-repo/OrionLib.lua')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/firemax-xx/Orion-Lib/refs/heads/main/Code.lua')))()
 
 local Window = OrionLib:MakeWindow({
     Name = "My Custom UI",
