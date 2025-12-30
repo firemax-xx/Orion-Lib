@@ -1423,19 +1423,22 @@ function OrionLib:MakeWindow(WindowConfig)
 				Relem(ItemParent.Name, Text, LabelFrame)
 				return LabelFunction
 			end
-
+			
 			function ElementFunction:ColorLabel(Text, ToChangeColor, Position)
+				local ContentLabel = SetProps(MakeElement("Label", Text, 15), {
+					Size = UDim2.new(1, -12, 1, 0),
+					Position = UDim2.new(0, 12, 0, 0),
+					Font = Enum.Font.GothamBold,
+					Name = "Content",
+					TextColor3 = ToChangeColor or Color3.fromRGB(255, 255, 255)
+				})
+				
 				local LabelFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
 					Size = UDim2.new(1, 0, 0, 30),
 					BackgroundTransparency = 0.7,
 					Parent = ItemParent
 				}), {
-					AddThemeObject(SetProps(MakeElement("Label", Text, 15), {
-						Size = UDim2.new(1, -12, 1, 0),
-						Position = UDim2.new(0, 12, 0, 0),
-						Font = Enum.Font.GothamBold,
-						Name = "Content"
-					}), "Text"),
+					ContentLabel,
 					AddThemeObject(MakeElement("Stroke"), "Stroke")
 				}), "Second")
 			
