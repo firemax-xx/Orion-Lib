@@ -1716,6 +1716,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				SliderConfig.Flag = SliderConfig.Flag or nil
 				SliderConfig.Save = SliderConfig.Save or false
 				SliderConfig.Block = SliderConfig.Block or true
+				SliderConfig.VarFunc = SliderConfig.VarFunc or nil
 			
 				local Slider = {
 					Value = SliderConfig.Default, 
@@ -1804,20 +1805,22 @@ function OrionLib:MakeWindow(WindowConfig)
 				task.spawn(function()
 					while SliderFrame and SliderFrame.Parent do
 						local crrLstate = true
-						local blockType = type(SliderConfig.Block)
+						local varFunc = SliderConfig.VarFunc or _G.var or getgenv().var
 						
-						if blockType == "string" then
-							local varResult = var and var(SliderConfig.Block)
-							if varResult ~= nil then
-								crrLstate = varResult
+						if type(SliderConfig.Block) == "string" then
+							if varFunc then
+								local varResult = varFunc(SliderConfig.Block)
+								if varResult ~= nil then
+									crrLstate = varResult
+								end
 							elseif _G.Toggle and _G.Toggle[SliderConfig.Block] ~= nil then
 								crrLstate = _G.Toggle[SliderConfig.Block]
 							elseif getgenv().Toggle and getgenv().Toggle[SliderConfig.Block] ~= nil then
 								crrLstate = getgenv().Toggle[SliderConfig.Block]
 							end
-						elseif blockType == "boolean" then
+						elseif type(SliderConfig.Block) == "boolean" then
 							crrLstate = SliderConfig.Block
-						elseif blockType == "function" then
+						elseif type(SliderConfig.Block) == "function" then
 							crrLstate = SliderConfig.Block()
 						end
 						
